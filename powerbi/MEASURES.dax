@@ -1,0 +1,90 @@
+// POWER BI DAX MEASURE REFERENCE
+// Add each measure separately in Power BI Desktop; do not paste the whole file as a query.
+// Import the CSVs in outputs and establish relationships in README_POWERBI.md.
+
+Actual Demand Units = SUM(actual_week_product[demand_units])
+
+Actual Shipped Units = SUM(actual_week_product[shipped_units])
+
+Actual Fill Rate % = DIVIDE([Actual Shipped Units], [Actual Demand Units], 0)
+
+Actual On-Time Unit Service % = DIVIDE(SUM(actual_week_product[on_time_shipped_units]), [Actual Demand Units], 0)
+
+Actual Finished Output = SUM(actual_week_stage[good_units])
+// For final-product output, apply dim_stage[stage_id] = 4 as a visual/page filter.
+
+Actual Final Finished Output =
+CALCULATE(SUM(actual_week_stage[good_units]), dim_stage[stage_id] = 4)
+
+Actual Stage Yield % = DIVIDE(SUM(actual_week_stage[good_units]), SUM(actual_week_stage[input_units]), 0)
+
+Actual Observed Load % = DIVIDE(SUM(actual_week_stage[ideal_work_minutes]), SUM(actual_week_stage[operating_minutes]), 0)
+
+Actual Nominal Capacity Load % = DIVIDE(SUM(actual_week_stage[ideal_work_minutes]), SUM(actual_week_stage[nominal_effective_minutes]), 0)
+
+Actual Ending Unfulfilled Units =
+VAR last_w = MAX(dim_week[week_id])
+RETURN CALCULATE(SUM(actual_week_product[end_unfulfilled_order_units]),
+    FILTER(ALL(dim_week[week_id]), dim_week[week_id] = last_w))
+
+Actual Ending WIP Units =
+VAR last_w = MAX(dim_week[week_id])
+RETURN CALCULATE(SUM(actual_wip[ending_wip_units]),
+    FILTER(ALL(dim_week[week_id]), dim_week[week_id] = last_w))
+
+Actual Ending Calculated FG =
+VAR last_w = MAX(dim_week[week_id])
+RETURN CALCULATE(SUM(actual_week_product[calculated_ending_fg]),
+    FILTER(ALL(dim_week[week_id]), dim_week[week_id] = last_w))
+
+Actual Max FG Snapshot Discrepancy = MAX(actual_week_product[fg_reconciliation_delta])
+
+Sim Total Shipped = SUM(sim_service[shipped_units])
+
+Sim Total Demand = SUM(sim_service[demand_units])
+
+Sim Fulfillment % = DIVIDE([Sim Total Shipped], [Sim Total Demand], 0)
+
+Sim Ending Backlog =
+VAR last_w = MAX(dim_week[week_id])
+RETURN CALCULATE(SUM(sim_service[ending_backlog_units]),
+    FILTER(ALL(dim_week[week_id]), dim_week[week_id] = last_w))
+
+Sim Ending WIP =
+VAR last_w = MAX(dim_week[week_id])
+RETURN CALCULATE(SUM(sim_wip[ending_wip_units]),
+    FILTER(ALL(dim_week[week_id]), dim_week[week_id] = last_w))
+
+Sim Effective Capacity Load % = DIVIDE(SUM(sim_capacity[ideal_workload_minutes]), SUM(sim_capacity[effective_minutes]), 0)
+
+Scenario Total Policy Cost (Assumed USD) = SUM(dim_scenario[total_policy_cost_usd_assumed])
+
+Scenario Equipment Capex (Assumed USD) = SUM(dim_scenario[new_machine_cost_usd_assumed])
+
+Scenario Backlog Penalty (Assumed USD) = SUM(dim_scenario[backlog_penalty_usd_assumed])
+
+Scenario Ending Backlog Summary = SUM(dim_scenario[ending_backlog])
+
+Scenario Incremental Shipped vs Baseline =
+[Sim Total Shipped] - CALCULATE([Sim Total Shipped], ALL(dim_scenario),
+    dim_scenario[scenario] = "S0 | As-is optimal plan")
+
+// FORWARD W17–W24. Requires extended dim_week and corresponding future tables.
+Future Forecast Units = SUM(forward_service_W17_W24[forecast_demand_units])
+
+Future Shipped Units = SUM(forward_service_W17_W24[shipped_units])
+
+Future Ending Backlog =
+VAR last_w = MAX(dim_week[week_id])
+RETURN CALCULATE(SUM(forward_service_W17_W24[ending_backlog_units]),
+    FILTER(ALL(dim_week[week_id]), dim_week[week_id] = last_w))
+
+Future Effective Load % = DIVIDE(
+    SUM(forward_capacity_W17_W24[ideal_workload_minutes]),
+    SUM(forward_capacity_W17_W24[effective_capacity_minutes]), 0)
+
+Future Policy Backlog W24 = SUM(forward_scenario_summary_W17_W24[ending_backlog_w24])
+
+Future Policy Fulfillment % = DIVIDE(
+    SUM(forward_scenario_summary_W17_W24[forecast_horizon_shipped]),
+    SUM(forward_scenario_summary_W17_W24[total_requirement]), 0)

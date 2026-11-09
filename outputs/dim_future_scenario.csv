@@ -1,0 +1,7 @@
+scenario
+F0 | Existing capacity
+F1 | OT +10% Cut/Grind
+F2 | Add Grinding W20
+F3 | OT + Add Grinding W20
+F4 | Add Grinding + Cutting W20
+F5 | OT + Both new machines

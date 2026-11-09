@@ -1,0 +1,5 @@
+stage_id,stage_code,stage_name,sequence_no
+1,CUT,Precision Cutting,1
+2,GRD,Edge Grinding,2
+3,POL,Surface Polishing,3
+4,INS,Optical Inspection,4

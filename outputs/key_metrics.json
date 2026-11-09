@@ -1,0 +1,11 @@
+{
+  "total_demand": 842905,
+  "total_shipped": 835089,
+  "ending_backlog": 7816.0,
+  "fg_end": 0.0,
+  "initial_fg": 4200,
+  "final_stage_output": 830889,
+  "final_wip_1": 117938.0,
+  "wip_reconciliation_max_error": 0.0,
+  "fg_reconciliation_max_error": 16379.0
+}

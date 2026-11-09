@@ -1,0 +1,5 @@
+stage_id,labor_cost_per_machine_hour_usd,energy_cost_per_machine_hour_usd
+1,1.45,0.22
+2,1.95,0.35
+3,2.3,0.48
+4,1.35,0.27

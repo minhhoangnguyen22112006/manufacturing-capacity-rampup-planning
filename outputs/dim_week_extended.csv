@@ -1,0 +1,25 @@
+week_id,week_start,week_end,ramp_phase,plan_status
+1,2026-01-05,2026-01-11,1,Pilot-to-ramp
+2,2026-01-12,2026-01-18,1,Ramp-up
+3,2026-01-19,2026-01-25,1,Ramp-up
+4,2026-01-26,2026-02-01,1,Ramp-up
+5,2026-02-02,2026-02-08,2,Ramp-up
+6,2026-02-09,2026-02-15,2,Ramp-up
+7,2026-02-16,2026-02-22,2,Ramp-up
+8,2026-02-23,2026-03-01,2,Ramp-up
+9,2026-03-02,2026-03-08,3,Ramp-up
+10,2026-03-09,2026-03-15,3,Ramp-up
+11,2026-03-16,2026-03-22,3,Ramp-up
+12,2026-03-23,2026-03-29,3,Ramp-up
+13,2026-03-30,2026-04-05,4,Ramp-up
+14,2026-04-06,2026-04-12,4,Ramp-up
+15,2026-04-13,2026-04-19,4,Ramp-up
+16,2026-04-20,2026-04-26,4,Ramp-up
+17,2026-04-27,2026-05-03,4,Illustrative Forecast
+18,2026-05-04,2026-05-10,4,Illustrative Forecast
+19,2026-05-11,2026-05-17,4,Illustrative Forecast
+20,2026-05-18,2026-05-24,4,Illustrative Forecast
+21,2026-05-25,2026-05-31,4,Illustrative Forecast
+22,2026-06-01,2026-06-07,4,Illustrative Forecast
+23,2026-06-08,2026-06-14,4,Illustrative Forecast
+24,2026-06-15,2026-06-21,4,Illustrative Forecast

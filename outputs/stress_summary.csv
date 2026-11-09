@@ -1,0 +1,5 @@
+scenario,n_trials,mean_ending_backlog,median_ending_backlog,p90_ending_backlog,probability_zero_backlog,mean_demand
+S0 | As-is optimal plan,150,4376.598949388408,3313.796516233102,10619.063946475733,0.32666666666666666,842232.3077746441
+S1 | OT +10% Cut/Grind,150,0.0,0.0,0.0,1.0,842232.3077746441
+S2 | Performance +5pp,150,0.0,0.0,0.0,1.0,842232.3077746441
+S3 | Add Grinding W9,150,0.0,0.0,0.0,1.0,842232.3077746441
